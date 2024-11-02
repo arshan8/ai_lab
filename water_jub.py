@@ -23,7 +23,7 @@ def get_neigbours(state):
         nbrs.append((0, jug1))
 
     #transfer some from jug1 to jug 2
-    t = min(jug1, capacity_jug2 - jug2)
+    t = min(jug1, capacity_jug2 - jug2)  #to prevent overflow
     nbrs.append((jug1 - t, jug2 + t))
 
     t = min(jug2, capacity_jug1 - jug1)
@@ -40,7 +40,7 @@ def bfs():
         state, path = q.pop(0)
 
         if is_goal(state):
-            return path + [state]
+            return path + [state]   #or s[state]+ path ?
         if state in visited:
             continue
 
