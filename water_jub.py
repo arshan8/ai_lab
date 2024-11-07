@@ -4,7 +4,7 @@ capacity_jug2 = 3
 goal = 2
 
 def is_goal(state):
-    return goal in state
+    return goal in state  #will retrun goal == state not work? if not then why  ..because look at the format of state, noob
 
 def get_neigbours(state):
     jug1,jug2 = state
@@ -17,10 +17,10 @@ def get_neigbours(state):
         nbrs.append((jug1,capacity_jug2))
 
     if jug1 > 0:
-        nbrs.append((0, jug2))
-
+        nbrs.append((0, jug2))   #is this necessary?
+                                        
     if jug2 > 0:
-        nbrs.append((0, jug1))
+        nbrs.append((0, jug1))   #is this necessary? 
 
     #transfer some from jug1 to jug 2
     t = min(jug1, capacity_jug2 - jug2)  #to prevent overflow
@@ -46,7 +46,8 @@ def bfs():
 
         visited.append(state)
         for neighbour in get_neigbours(state):
-            q.append((neighbour, path + [state]))
+            if neighbour not in visited or n:
+                q.append((neighbour, path + [state]))
 
     return None
 

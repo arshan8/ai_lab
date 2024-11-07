@@ -140,7 +140,7 @@ d = [[0, 10, 15, 20],
      [20, 25, 30, 0]]
 
 
-def tsp(curr, to_visit, dist, memo, path):
+def tsp(curr, to_visit,  memo, path):
     if not to_visit:
         # Return to the starting point
         return d[curr][0], path + [0]  
@@ -152,11 +152,11 @@ def tsp(curr, to_visit, dist, memo, path):
     best_path = None  # Variable to store the best path
     
     for k in to_visit:
-        new_to_visit = copy.deepcopy(to_visit)
+        new_to_visit = copy.copy(to_visit)
         new_to_visit.remove(k)
         
         # Get the cost and the path from this city
-        new_cost, sub_path = tsp(k, new_to_visit, dist, memo, path + [k])
+        new_cost, sub_path = tsp(k, new_to_visit, memo, path + [k])
         
         new_cost += d[curr][k]
         
@@ -174,8 +174,19 @@ start_city = 0
 to_visit = list(range(1, n))  # Cities to visit except the start city
 
 # Call the tsp function
-min_cost, best_path = tsp(start_city, to_visit, d, memo, [start_city])
+min_cost, best_path = tsp(start_city, to_visit, memo, [start_city])
 
 # Print the results
 print("Minimum cost:", min_cost)
 print("Path:", best_path)
+
+# ertainly! Here's a brief overview of the recursive calls with each iteration showing the path sequence:
+
+# Main Iterations and Path Sequences
+# Iteration 1: Start with 0 -> 1 -> 2 -> 3 -> 0
+# Iteration 2: Start with 0 -> 1 -> 3 -> 2 -> 0
+# Iteration 3: Start with 0 -> 2 -> 1 -> 3 -> 0
+# Iteration 4: Start with 0 -> 2 -> 3 -> 1 -> 0
+# Iteration 5: Start with 0 -> 3 -> 1 -> 2 -> 0
+# Iteration 6: Start with 0 -> 3 -> 2 -> 1 -> 0
+# Each iteration explores a different order of visiting cities and then returns to city 0. The algorithm then selects the sequence with the minimum cost.
