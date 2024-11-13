@@ -1,0 +1,11 @@
+1) water jug
+2) dfs and bfs
+3)monkey banana
+4)tic tac toe
+
+
+*)8 puzz 
+
+5) missionry and cannibal
+6) tsp
+7) n quin
