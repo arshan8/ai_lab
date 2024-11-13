@@ -8,21 +8,10 @@ def is_goal_state(state):
 
 def swap_tiles(state, i1, j1, i2, j2):
     new_state = copy.deepcopy(state)
-   # new_state = [row[:] for row in state]  # Create a deep copy
     new_state[i1][j1], new_state[i2][j2] = new_state[i2][j2], new_state[i1][j1]
     return new_state
 
-# def generate_neighbors(state):
-#     neighbors = []
-#     for i in range(3):
-#         for j in range(3):
-#             if state[i][j] == 0:
-#                 for di, dj in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-#                     ni, nj = i + di, j + dj
-#                     if 0 <= ni < 3 and 0 <= nj < 3:
-#                         new_state = swap_tiles(state, i, j, ni, nj)
-#                         neighbors.append(new_state)
-#     return neighbors
+
 
 def generate_neighbors(state):
     ngbr = []
