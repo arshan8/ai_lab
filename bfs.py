@@ -17,7 +17,7 @@ def bfs():
 
 bfs()    
 print(visited)
-print(my_queue)
+# print(my_queue)
 
 
 

@@ -1,7 +1,10 @@
-n = 4
+n = 6
 board = []
-for i in range(n):
-    board.append(["." for j in range(n)])
+
+
+# for i in range(n):
+#     board.append(["." for j in range(n)])
+board = [["." for i in range(n)] for _  in range(n)]
     
 print(board)
 
@@ -37,5 +40,5 @@ def solve(r = 0):
 
 
 solve()
-import platform
-platform.python_implementation()   
+# import platform
+# platform.python_implementation()   

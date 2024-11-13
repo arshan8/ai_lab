@@ -142,7 +142,7 @@ d = [[0, 10, 15, 20],
 
 def tsp(curr, to_visit,  memo, path):
     if not to_visit:
-        # Return to the starting point
+                    # Return to the starting point
         return d[curr][0], path + [0]  
     
     if (curr, tuple(to_visit)) in memo:

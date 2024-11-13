@@ -40,13 +40,13 @@ def bfs():
         state, path = q.pop(0)
 
         if is_goal(state):
-            return path + [state]   #or s[state]+ path ?
+            return path + [state]   #ors[state]+ path ?
         if state in visited:
             continue
 
         visited.append(state)
         for neighbour in get_neigbours(state):
-            if neighbour not in visited or n:
+            if neighbour not in visited or neighbour not in [k for k,v in q]:
                 q.append((neighbour, path + [state]))
 
     return None

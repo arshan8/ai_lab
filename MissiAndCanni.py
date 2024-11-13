@@ -17,7 +17,7 @@ def bfs():
     start = (3, 3, 1)  # (missis, cannis, boat position)
     goal = (0, 0, 0)
     queue = deque([(start, [])])
-    visited = set([start])
+    visited = set()
 
     moves = [(1, 0), (2, 0), (0, 1), (0, 2), (1, 1)]  # Possible combinations of missis and cannis in the boat,, remember on BOAT, not any side!!
 
@@ -25,6 +25,8 @@ def bfs():
         state, path = queue.popleft()
         m,c,b = state
         
+        visited.add(state)
+
         if state == goal:
             return path + [state]
         for dm, dc in moves:
@@ -37,7 +39,7 @@ def bfs():
             # Check if the next state is valid and not yet visited
             if is_valid(next_state) and next_state not in visited:
                 queue.append((next_state, path + [state]))
-                visited.add(next_state)
+                
 
 sol = bfs()
 
