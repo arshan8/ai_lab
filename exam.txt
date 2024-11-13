@@ -5,6 +5,7 @@
 
 
 *)8 puzz 
+*) toh
 
 5) missionry and cannibal
 6) tsp

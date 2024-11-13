@@ -1,59 +1,63 @@
-capacity_jug1 = 4
-capacity_jug2 = 3
+#water jug
 
-goal = 2
+goal = 10
+capa_j1 = 4
+capa_j2 = 3
+
 
 def is_goal(state):
-    return goal in state  #will retrun goal == state not work? if not then why  ..because look at the format of state, noob
+    if goal in state:
+        return True
+    else:
+        False
 
-def get_neigbours(state):
-    jug1,jug2 = state
-    nbrs= []
+def get_nrs(state):
+    j1 = state[0]
+    j2 = state[1]
+    nbrs = []
 
-    if jug1 < capacity_jug1:
-        nbrs.append((capacity_jug1,jug2))
+    if j1>0:
+        nbrs.append((0,j2))
 
-    if jug2 < capacity_jug2:
-        nbrs.append((jug1,capacity_jug2))
+    if j2>0:
+        nbrs.append((j1,0))
 
-    if jug1 > 0:
-        nbrs.append((0, jug2))   #is this necessary?
-                                        
-    if jug2 > 0:
-        nbrs.append((0, jug1))   #is this necessary? 
+    if j1 < capa_j1:
+        nbrs.append((capa_j1,j2))
 
-    #transfer some from jug1 to jug 2
-    t = min(jug1, capacity_jug2 - jug2)  #to prevent overflow
-    nbrs.append((jug1 - t, jug2 + t))
+    if j2 < capa_j2:
+        nbrs.append((j1,capa_j2))
 
-    t = min(jug2, capacity_jug1 - jug1)
-    nbrs.append((jug1 + t, jug2 - t))
+    t = min(j1, capa_j2 - j2)
+    nbrs.append((j1-t, j2+t))
 
-    return nbrs
+    t = min(capa_j1-j1,j2)
+    nbrs.append((j1+t,j2-t))  
 
+    return nbrs  
+
+Start = (0,0)
 def bfs():
-    start = (0,0)
-    q = [((start), [])]
-    visited = []
+    q = [((Start),[])]
+    visited =[]
 
     while q:
-        state, path = q.pop(0)
+        node = q.pop(0)
+        state = node[0]
+        path = node[1]
 
         if is_goal(state):
-            return path + [state]   #ors[state]+ path ?
-        if state in visited:
-            continue
+            return path + [state]
 
         visited.append(state)
-        for neighbour in get_neigbours(state):
-            if neighbour not in visited or neighbour not in [k for k,v in q]:
-                q.append((neighbour, path + [state]))
 
-    return None
-
-sol = bfs()
-
-if sol:
-    print("solution:: -->")
-    for step in sol:
-        print(step)
+        for nb in get_nrs(state):
+            if nb not in visited and nb not in [k for k,v in q]:
+                new_path = path + [state]
+                q.append((nb,new_path))
+            
+if bfs():
+    for r in bfs():
+        print(r)
+else:
+    print("no")
