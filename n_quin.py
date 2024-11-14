@@ -40,5 +40,3 @@ def solve(r = 0):
 
 
 solve()
-# import platform
-# platform.python_implementation()   
